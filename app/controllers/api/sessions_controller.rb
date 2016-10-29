@@ -6,7 +6,7 @@ class Api::SessionsController < ApplicationController
       params[:user][:password]
     )
 
-    if @user.valid? && current_user != @user
+    if @user.valid?
       login!(@user)
       render "/api/users/show"
     else
@@ -15,11 +15,12 @@ class Api::SessionsController < ApplicationController
   end
 
   def destroy
-    if logged_in?
+    @user = current_user
+    if @user
       logout!
-      render json: {}
+      render "api/users/show"
     else
-      render json: "Already logged out", status: 404
+      render json: ["Already logged out"], status: 404
     end
   end
 end

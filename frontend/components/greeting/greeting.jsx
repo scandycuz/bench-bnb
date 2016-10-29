@@ -15,7 +15,7 @@ const Greeting = (props) => {
   } else {
     return(
       <div>
-        <Link to="/login">Login</Link> or <Link to="/signup">Sign up</Link>
+        <Link to="/signup">Sign up</Link> or <Link to="/login">Login</Link>
       </div>
     )
   }
